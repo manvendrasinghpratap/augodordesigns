@@ -1,11 +1,11 @@
 <header id="page-topbar"> 
     @php
         use Illuminate\Support\Facades\File;
-        use App\Models\OrderNotification;
+        // use App\Models\OrderNotification;
 
         $avatar = Auth::user()->avatar;
         $customAvatarPath = public_path('uploads/staff/small/' . $avatar);
-        $defaultAvatarPath = URL::asset('images/' . $avatar);
+        $defaultAvatarPath = URL::asset('assets/images/' . $avatar);
 
         if (!empty($avatar) && $avatar !== 'default.png' && File::exists($customAvatarPath)) {
             $avatarUrl = URL::asset('uploads/staff/small/' . $avatar);
@@ -15,22 +15,22 @@
 
         $isAdministrator = Auth::user()->user_type == \Config::get('constants.superadmin') ? 'administrator' : 'admin';
 
-        $unreadCount = OrderNotification::where('is_read', false)->count();
-        $latestNotifications = OrderNotification::latest()->take(5)->get();
+        // $unreadCount = OrderNotification::where('is_read', false)->count();
+        // $latestNotifications = OrderNotification::latest()->take(5)->get();
     @endphp   
     <div class="navbar-header">
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
                 <a href="{{ url("/$isAdministrator") }}" class="logo- logo-dark-">
-                    <span class="logo-sm">
-                        <img src="{{ URL::asset('assets/images/fav.png') }}" alt="" height="30">
+                    <span class="logo-sm"> 
+                        <img src="{{ asset('assets/images/fav.png') }}" alt="" height="50">
                     </span>
                 </a>
 
                 <a href="{{ url("/$isAdministrator") }}" class="logo logo-light ">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset('assets/images/fav.png') }}" alt="" height="30">
+                        <img src="{{ asset('assets/images/fav.png') }}" alt="" height="50">
                     </span>
                 </a>
             </div>
@@ -38,7 +38,7 @@
 
         <div class="d-flex">
             <!-- 🔔 Notification Dropdown -->
-             <div class="dropdown d-inline-block me-2 notification-dropdown">
+             {{-- <div class="dropdown d-inline-block me-2 notification-dropdown">
                 <button type="button" class="btn header-item bg-soft-light position-relative"
                     id="notificationDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-bell font-size-18"></i>
@@ -83,7 +83,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- 🔔 End Notification Dropdown -->
             <div class="dropdown d-none d-sm-inline-block"></div>
             <div class="dropdown d-inline-block">
@@ -101,14 +101,9 @@
                 <div class="dropdown-menu dropdown-menu-end">
             <!-- item-->
                     {{-- <a class="dropdown-item" href="{{ route('setting.index') }}"><i class="mdi mdi-cog  font-size-16 align-middle me-1"></i> @lang('translation.Settings')</a> --}}
-                    <a class="dropdown-item" href="{{ route('profile') }}"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> @lang('translation.Profile')</a>
-                    <a class="dropdown-item" href="{{ route('editPassword') }}"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i>Change Password </a>
-                    @php  $ikd = 20;   @endphp       
-                    @if($ikd == 100)
-                    <a class="dropdown-item" href="{{ route('attendanceView') }}"><i
-                            class="mdi mdi-check font-size-16 align-middle me-1"></i>@lang('translation.attendance_view')
-                    </a>
-                    @endif
+                    {{-- <a class="dropdown-item" href="{{ route('profile') }}"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> @lang('translation.Profile')</a> --}}
+                    {{-- <a class="dropdown-item" href="{{ route('editPassword') }}"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i>Change Password </a> --}}
+                   
                     <a class="dropdown-item" href="{{url('/')}}"><i
                         class="mdi mdi-web font-size-16 align-middle me-1"></i>@lang('translation.frontend')
                     </a>
@@ -128,7 +123,7 @@
 </header>
 <!-- 🔁 AJAX for Live Notifications -->
 @push('scripts')
-<script>
+{{-- <script>
 $(document).ready(function() {
     function fetchNotifications() {
         $.ajax({
@@ -174,5 +169,5 @@ $(document).ready(function() {
 });
 
 });
-</script>
+</script> --}}
 @endpush

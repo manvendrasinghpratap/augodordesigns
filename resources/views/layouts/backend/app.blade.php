@@ -5,7 +5,7 @@
     <title>@lang('translation.webname') | @lang('translation.adminpanel') | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Premium Multipurpose Admin & Dashboard Template">
-    <meta name="author" content="Themesdesign">
+    <meta name="author" content="Manvendra Pratap Singh | 8707643218">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="/favicon.ico">
     @include('backend.layouts.head-css')

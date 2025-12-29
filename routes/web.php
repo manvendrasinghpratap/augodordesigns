@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\{
+    DashboardController,
+    CategoryController,
+    ProductController,
+    OrderController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +15,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->get('admin',[App\Http\Controllers\Admin\DashboardController::class,'root'])->name('dashboard');
+Route::resource('/categories', CategoryController::class);
 Route::middleware(['auth'])->prefix('admin/staff')->group(function () {    
         Route::get('/', [StaffController::class, 'index'])->name('staff');
         Route::get('/add', [StaffController::class, 'create'])->name('staff.add');
