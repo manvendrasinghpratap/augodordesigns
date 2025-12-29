@@ -6,15 +6,18 @@
     'value' => '',
     'placeholder' => '',
     'disabled' => false,
+    'labelstatus'=> true
 ])
 
-<div class="mb-3">
+<div class="mb-1">
+    @if($labelstatus)
     <label for="{{ $id }}" class="form-label">
         {{ $label ?? Str::title(str_replace('_', ' ', $name)) }}
             @if($attributes->get('required'))
                 <span class="required error_{{ $name }}"> *</span>
            @endif
     </label>
+    @endif
 
     <input 
         id="{{ $id }}"

@@ -24,28 +24,29 @@
 						<a href="#">Links</a>
 						<ul>
 							<li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login</a></li>
+							{{-- <li><a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">Log in</a></li> --}}
 						</ul>
 					</li>
 				</ul><!-- End .top-menu -->
 
 				<div class="header-dropdown">
-					<a href="#">USD</a>
+					<a href="javascript::void(0);">NGN</a>
 					<div class="header-menu">
-						<ul>
+						{{-- <ul>
 							<li><a href="#">Eur</a></li>
 							<li><a href="#">Usd</a></li>
-						</ul>
+						</ul> --}}
 					</div><!-- End .header-menu -->
 				</div><!-- End .header-dropdown -->
 
 				<div class="header-dropdown">
 					<a href="#">Eng</a>
 					<div class="header-menu">
-						<ul>
+						{{-- <ul>
 							<li><a href="#">English</a></li>
 							<li><a href="#">French</a></li>
 							<li><a href="#">Spanish</a></li>
-						</ul>
+						</ul> --}}
 					</div><!-- End .header-menu -->
 				</div><!-- End .header-dropdown -->
 			</div><!-- End .header-right -->

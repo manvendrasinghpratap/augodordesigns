@@ -4,13 +4,13 @@
 		@if($attributes->get('required'))<span class="required error_{{ $name }}"> *</span>@endif
 		</label>
 		<input
-		type="number"
-		name="{{ $name }}"
+        type="number"
+        name="{{ $name }}"
 		placeholder="{{ $label }}"
-		value="{{ old($name, $value ?? '') }}"
-		id="{{ $name }}"
-		{{ $attributes->merge(['class' => 'form-control']) }}
-		>
+        value="{{ old($name, $value ?? '') }}"
+		{{ $attributes->merge(['class' => 'form-control','id' => $name]) }}
+        {{ $attributes }}
+    >
 	</div>
 	@error($name)
 		<div class = "required text-sm text-red-600 mt-1">{{ $message }}</div>

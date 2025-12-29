@@ -1,10 +1,5 @@
 @props([
-    'name',
-    'label' => null,
-    'value' => null,
-    'placeholder' => null,
-    'rows' => 3,
-    'mainrows' => 4,
+	'mainrows' => '4'
 ])
 <div class="col-xl-{{ $mainrows }} col-md-6">
 	<div class="form-group mb-3">

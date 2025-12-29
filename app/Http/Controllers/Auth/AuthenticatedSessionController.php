@@ -31,6 +31,29 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
+    public function modellogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+        $remember = $request->boolean('remember');
+        if (Auth::attempt($credentials, $remember)) {
+            $request->session()->regenerate();
+
+            return response()->json([
+                'status' => true,
+                'redirect' => route('dashboard'),
+            ]);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'The provided credentials do not match our records.',
+        ], 422);
+    }
+
+
     /**
      * Destroy an authenticated session.
      */

@@ -9349,7 +9349,8 @@ a:focus {
     margin-bottom: 0; }
 
 .form-control {
-  height: 40px;
+  height: 30px;
+  /* height: 40px; */
   padding: .85rem 2rem;
   font-size: 1.4rem;
   line-height: 1.5;
@@ -16863,3 +16864,8 @@ button:focus {
 /* '' */
 
 /*# sourceMappingURL=style.css.map */
+
+.per-40 {
+  width: 40%; }
+.per-60 {
+  width: 60%; }

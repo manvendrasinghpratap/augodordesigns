@@ -9,6 +9,20 @@
     });
     </script>
     @endif
+    @if(session('success'))
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: @json(session('success')),
+      timer: 3000,
+      showConfirmButton: false
+    });
+  });
+</script>
+@endif
+
 
     @if(session('error'))
     <script>
@@ -44,3 +58,16 @@
     });
     </script>
 @endif
+
+@if(session('redirect'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: "{{ session('redirect') }}",
+    timer: 3000,
+    showConfirmButton: false
+});
+</script>
+@endif
+

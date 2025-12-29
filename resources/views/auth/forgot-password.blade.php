@@ -4,7 +4,7 @@
         <div class="main-signin-wrapper error-wrapper">
             <div class="main-card-signin d-md-flex wd-100p">
                 <!-- Left Side Image -->
-               <div class="wd-md-50p login d-none d-md-block page-signin-style p-5 text-white">
+               <div class="wd-md-50p login d-none d-md-block page-signin-style p-5 text-white per-40">
                     <div class="my-auto authentication-pages">
                         <div>
                             <img src="{{ asset('assets/img/brand/logo.png') }}" class=" m-0 mb-4" alt="logo @lang('translation.webname')">
@@ -17,7 +17,7 @@
                 </div>
                 <!-- Login Form Slot -->
 
-                <div class="p-5 wd-md-50p">
+                <div class="p-5 wd-md-50p per-60">
                     <div class="main-signin-header">
 
                         <h2>Forgot your password?</h2>
