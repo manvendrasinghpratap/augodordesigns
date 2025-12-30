@@ -594,15 +594,19 @@ blockquote {
     text-transform: uppercase; }
     .header-dropdown > a::after,
     .header-dropdown > span::after {
-      font-family: "molla";
-      content: '\f110';
+      font-family: "molla";      
       position: absolute;
+      content: '\f110' !important;
       right: 0;
       top: 50%;
       display: inline-block;
       font-size: 1.2rem;
       line-height: 1;
       margin-top: -.7rem; }
+      
+  .dropdown-icon{
+    content: '\f110' !important;
+  }    
   .header-dropdown a:hover, .header-dropdown a:focus {
     text-decoration: none; }
 

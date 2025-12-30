@@ -30,18 +30,53 @@
             </div>
         </div>
 
-        @includeWhen(View::exists('backend.layouts.footer'),'backend.layouts.footer')
-        @includeWhen(View::exists('backend.modal.modalpopup'),'backend.modal.modalpopup')
+        @includeWhen(View::exists('backend.layouts.footer'),'backend.layouts.footer')        
     </div>
 </div>
 @includeWhen(View::exists('backend.layouts.vendor-scripts'),'backend.layouts.vendor-scripts')
+@include('components.ajax')
+@includeWhen(View::exists('backend.modal.modalpopup'),'backend.modal.modalpopup')
 
-<script>
+{{-- <script>
 @if(session('success')) alertify.success("{{ session('success') }}"); @endif
 @if(session('error')) alertify.error("{{ session('error') }}"); @endif
 @if(session('warning')) alertify.error("{{ session('warning') }}"); @endif
 @if(session('info')) alertify.error("{{ session('info') }}"); @endif
+</script> --}}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    @if (session('success'))
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#28a745'
+        });
+    @endif
+
+    @if (session('error'))
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ session('error') }}',
+            confirmButtonColor: '#dc3545'
+        });
+    @endif
+
+     @if (session('warning'))
+        Swal.fire({
+            icon: 'warning',
+            title: 'Warning',
+            text: '{{ session('warning') }}',
+            confirmButtonColor: '#ffc107'
+        });
+    @endif
+
+});
 </script>
+
 
 </body>
 </html>

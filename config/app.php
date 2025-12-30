@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Augodordesigns'),
+    'subtitle' => env('APP_SUBTITLE', 'African Fashion & Igbo Cultural Designs'),
 
     /*
     |--------------------------------------------------------------------------

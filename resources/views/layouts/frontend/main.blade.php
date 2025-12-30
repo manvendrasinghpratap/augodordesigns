@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} || {{ config('app.subtitle') }}</title>
     <meta name="keywords" content="HTML5 Template">
-    <meta name="description" content="Molla - Bootstrap eCommerce Template">
-    <meta name="author" content="p-themes">
+    <meta name="description" content="Augodor Designs weaves stories of culture, heritage, and identity into every piece. Celebrating Igbo traditions and African fashion with signature stoles, sashes, and mufflers that honor our roots.">
+    <meta name="author" content="Augodor Designs | African Fashion & Igbo Cultural Designs | Manvendra Pratap Singh | 8707643218 |">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/icons/apple-touch-icon.png')}}">
@@ -45,7 +45,7 @@
                             <h3 class="intro-subtitle text-white">You're Looking Good</h3><!-- End .h3 intro-subtitle -->
                             <h1 class="intro-title text-white">New Lookbook</h1><!-- End .intro-title -->
 
-                            <a href="category.html" class="btn btn-outline-white-4">
+                            <a href="{{url('/')}}" class="btn btn-outline-white-4">
                                 <span>Discover More</span>
                             </a>
                         </div><!-- End .intro-content -->
@@ -56,7 +56,7 @@
                             <h3 class="intro-subtitle text-white">Don’t Miss</h3><!-- End .h3 intro-subtitle -->
                             <h1 class="intro-title text-white">Mysrety Deals</h1><!-- End .intro-title -->
 
-                            <a href="category.html" class="btn btn-outline-white-4">
+                            <a href="{{url('/')}}" class="btn btn-outline-white-4">
                                 <span>Discover More</span>
                             </a>
                         </div><!-- End .intro-content -->
@@ -1107,44 +1107,13 @@
         </div><!-- End .mobile-menu-wrapper -->
     </div><!-- End .mobile-menu-container -->
 
-    <!-- Sign in / Register Modal -->
-    @include('model.Signin-Register')     
+    <!-- Sign in / Register Modal -->    
+    @include('model.signin-register-modal')     
     <!-- End .modal -->
-
-    <div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">
-        <div class="row justify-content-center">
-            <div class="col-10">
-                <div class="row no-gutters bg-white newsletter-popup-content">
-                    <div class="col-xl-3-5col col-lg-7 banner-content-wrap">
-                        <div class="banner-content text-center">
-                            <img src="{{ asset('assets/images/popup/newsletter/logo.png')}}"  class="logo" alt="logo" width="60" height="15">
-                            <h2 class="banner-title">get <span>25<light>%</light></span> off</h2>
-                            <p>Subscribe to the Molla eCommerce newsletter to receive timely updates from your favorite products.</p>
-                            <form action="#">
-                                <div class="input-group input-group-round">
-                                    <input type="email" class="form-control form-control-white" placeholder="Your Email Address" aria-label="Email Adress" required>
-                                    <div class="input-group-append">
-                                        <button class="btn" type="submit"><span>go</span></button>
-                                    </div><!-- .End .input-group-append -->
-                                </div><!-- .End .input-group -->
-                            </form>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="register-policy-2" required>
-                                <label class="custom-control-label" for="register-policy-2">Do not show this popup again</label>
-                            </div><!-- End .custom-checkbox -->
-                        </div>
-                    </div>
-                    <div class="col-xl-2-5col col-lg-5 ">
-                        <img src="{{ asset('assets/images/popup/newsletter/img-1.jpg')}}"  class="newsletter-img" alt="newsletter">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Newsletter Popup -->
+    @include('model.newsletter-popup')       
     <!-- Plugins JS File -->
-    @include('layouts.frontend.js')      
-
-    
+    @include('layouts.frontend.js')  
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 @section('title')
-    {{-- {{array_key_exists('title',$breadcrumb)?$breadcrumb['title']:''}} --}}
+    {{array_key_exists('title',$breadcrumb)?$breadcrumb['title']:''}}
 @endsection
 @section('content')
 @include('backend.components.breadcrumb')
@@ -30,8 +30,8 @@
                                 <div class="form-group mb-3">
                                 	<label class="d-inline-block w-100">&nbsp;</label>
                                     <x-filter-submit-button name="submit" label="Filter" value="Filter" class=""/>
-                                    @if(!empty($breadcrumb['route']))
-                                    <x-filter-href-button name="reset" href="{{ route(array_key_exists('route',$breadcrumb)?$breadcrumb['route']:'') }}" label="Reset" class=""/>
+                                    @if(!empty($breadcrumb['route1']))
+                                    <x-filter-href-button name="reset" href="{{ route(array_key_exists('route1',$breadcrumb)?$breadcrumb['route1']:'') }}" label="Reset" class=""/>
                                     @endif
                                 </div>
                             </div>
@@ -44,9 +44,9 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                {{-- <div class="card-header">
-                    <h4 class="card-title">{{array_key_exists('routeTitle',$breadcrumb)?$breadcrumb['routeTitle']:''}}</h4>
-                </div> --}}
+                <div class="card-header">
+                    <h4 class="card-title">{{array_key_exists('route1Title',$breadcrumb)?$breadcrumb['route1Title']:''}}</h4>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive overflowx">
                         <table  class="table table-striped align-middle">
@@ -54,29 +54,31 @@
                             <tr>
                                 <th>#</th>
                                 <th>{{__('translation.category')}}</th>
+                                <th>{{__('translation.slug')}}</th>
                                 <th>{{__('translation.image')}}</th>
                                 <th>{{__('translation.description')}}</th>
                                 <th>{{__('translation.status')}}</th>
                                 <th>{{__('translation.createdat')}}</th>
-                                <th>{{__('translation.action')}}</th>
+                                <th>{{__('translation.actions')}}</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if(!empty($menuTypeList))
-                                    @foreach($menuTypeList as $menuType)
+                            @if(!empty($categories))
+                                    @foreach($categories as $categoriesType)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $menuType->type }}</td>
-                                        <td><img src="{{ asset('uploads/menu_type/small/'.$menuType->image) }}" alt="Image"></td>
-                                        <td>{{ substr($menuType->description,0,50) }}</td>
+                                        <td>{{ $categoriesType->name }}</td>
+                                        <td>{{ $categoriesType->slug }}</td>
+                                        <td><img src="{{ asset('uploads/categories/small/'.$categoriesType->image) }}" alt="Image"></td>
+                                        <td>{{ substr($categoriesType->description,0,50) }}</td>
                                         <td>
-                                            <input type="checkbox" id="switch3{{$menuType->id}}" class="changestatus" data-id="{{ $menuType->id }}" data-url="{{ route('menu.category.statusUpdate') }}" switch="bool"  @if($menuType->status==1) checked @endif/>
-                                            <label for="switch3{{$menuType->id}}" data-on-label="Yes" data-off-label="No"></label>
+                                            <input type="checkbox" id="switch3{{$categoriesType->id}}" class="changestatus" data-id="{{ \App\Helpers\Settings::getEncodeCode($categoriesType->id) }}" data-url="{{ route('categories.statusUpdate', $categoriesType->id) }}" switch="bool"  @if($categoriesType->status==1) checked @endif/>
+                                            <label for="switch3{{$categoriesType->id}}" data-on-label="Yes" data-off-label="No"></label>
                                         </td>
-                                        <td>{{ App\Helpers\Settings::getFormattedDatetime($menuType->created_at)}}</td>
+                                        <td>{{ App\Helpers\Settings::getFormattedDatetime($categoriesType->created_at)}}</td>
                                         <td>
-                                            <x-href-input name="edit" label="Edit"  required href="{{ route('menu.category.edit',['id' => \App\Helpers\Settings::getEncodeCode($menuType->id)]) }}" />
-                                            <x-deletehref-input name="DeleteButton" label="Delete" required href="javascript:void(0)" class="deleteData"  data-deleteid="{{ $menuType->id }}"  data-routeurl="{{ route('menu.category.destroy') }}"/> 
+                                            <x-href-input name="edit" label="Edit"  required href="{{ route('categories.edit', ['category' => \App\Helpers\Settings::getEncodeCode($categoriesType->id)]) }}" />
+                                            <x-deletehref-input name="DeleteButton" label="Delete" required href="javascript:void(0)" class="deleteData"  data-deleteid="{{ \App\Helpers\Settings::getEncodeCode($categoriesType->id) }}"  data-routeurl="{{ route('categories.softdelete', $categoriesType->id) }}"/> 
                                         </td>
                                     </tr>
                                     @endforeach
@@ -86,8 +88,8 @@
                             </tbody>
                         </table>
                     </div>
-                    @if(!empty($menuTypeList))
-                        <div class="right user-navigation right">{!! $menuTypeList->appends(request()->input())->links() !!}</div>
+                    @if(!empty($categories) && $categories->count() > 0)
+                        <div class="right user-navigation right">{!! $categories->appends(request()->input())->links() !!}</div>
                     @endif
                 </div>
             </div>
@@ -96,12 +98,10 @@
     </div> <!-- end row -->
 @endsection
 @section('script')
-     <script src="{{ URL::asset('public/assets/backend/js/menucategory.js?id='.Config::get('app.css_refresh')) }}"></script>
-     <!------------- js wtritten in ajax.blade file frontend/component-->
     <script>
         $(document).ready(function() {
-        setupPdfDownload('.categorypdf', 'data-downloadroutepdf');
-        setupPdfDownload('.categorycsv', 'data-downloadroutepdf');
+            setupPdfDownload('.categorypdf', 'data-downloadroutepdf');
+            setupPdfDownload('.categorycsv', 'data-downloadroutepdf');
         });
     </script>
 @endsection

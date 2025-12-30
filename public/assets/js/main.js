@@ -756,7 +756,8 @@ $(document).ready(function () {
         
         e.preventDefault();
     });
-
+    // Newsletter popup
+    /*
     if(document.getElementById('newsletter-popup-form')) {
         setTimeout(function() {
             var mpInstance = $.magnificPopup.instance;
@@ -785,4 +786,5 @@ $(document).ready(function () {
             }, 500)
         }, 900)
     }
+    */
 });

@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
 
             return response()->json([
                 'status' => true,
-                'redirect' => route('dashboard'),
+                'redirect' => url('/'),
             ]);
         }
 
